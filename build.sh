@@ -11,7 +11,7 @@ source $workdir/config.sh
 source $workdir/functions.sh
 
 # Set timezone
-sudo timedatectl set-timezone "$TIMEZONE"
+export TZ="$TIMEZONE"
 
 # Clone kernel source
 KSRC="$workdir/ksrc"
@@ -28,7 +28,6 @@ log "Setting KernelSU variant..."
 case "$KSU" in
   "Next") VARIANT="KSUN" ;;
   "Suki") VARIANT="SUKISU" ;;
-  "Rissu") VARIANT="RKSU" ;;
   "None") VARIANT="NKSU" ;;
 esac
 [[ $KSU_SUSFS == "true" ]] && VARIANT+="+SuSFS"
@@ -91,9 +90,8 @@ if ksu_included; then
 
   # Install kernelsu
   case "$KSU" in
-    "Next") install_ksu bintang774/KernelSU-Next $(susfs_included && echo "next-susfs" || echo "next") ;;
-    "Suki") install_ksu SukiSU-Ultra/SukiSU-Ultra susfs-main ;;
-    "Rissu") install_ksu rsuntk/KernelSU $(susfs_included && echo "staging/susfs-main" || echo "main") ;;
+    "Next") install_ksu LoggingNewMemory/SuiKernel-KernelSU-Next $(if susfs_included; then echo "next-susfs"; else echo "next"; fi) ;;
+    "Suki") install_ksu SukiSU-Ultra/SukiSU-Ultra $(if susfs_included; then echo "susfs-main"; elif ksu_manual_hook; then echo "nongki"; else echo "main"; fi) ;;
   esac
   config --enable CONFIG_KSU
 fi
@@ -102,7 +100,7 @@ fi
 if susfs_included; then
   # Kernel-side
   log "Applying kernel-side susfs patches"
-  git clone --depth=1 -q https://gitlab.com/simonpunk/susfs4ksu \
+  git clone --depth=1 -q https://gitlab.com/simonpunk/susfs4ksu   
     -b gki-android12-5.10 \
     $workdir/susfs
   SUSFS_PATCHES=$workdir/susfs/kernel_patches
@@ -116,7 +114,7 @@ else
 fi
 
 # KSU Manual Hooks
-if [[ $KSU_MANUAL_HOOK == "true" ]]; then
+if ksu_manual_hook; then
   # Apply manual hook patch
   log "Applying manual hook patch"
   patch -p1 < $workdir/kernel-patches/manual-hook.patch
@@ -152,7 +150,7 @@ MODULE_SYMVERS="$KSRC/out/Module.symvers"
 
 text=$(
   cat << EOF
-*==== Krenol CI ====*
+*==== SuiKernel Builder ====*
 🐧 *Linux Version*: $LINUX_VERSION
 📅 *Build Date*: $KBUILD_BUILD_TIMESTAMP
 📛 *KernelSU*: ${KSU}$(ksu_included && echo " | $KSU_VERSION")
