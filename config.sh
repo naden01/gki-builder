@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Kernel name
-KERNEL_NAME="QuartiX"
+KERNEL_NAME="waknazekernel"
 # Kernel Build variables
-USER="eraselk"
-HOST="gacorprjkt"
+USER="naze"
+HOST="Garde"
 TIMEZONE="Asia/Makassar"
 # AnyKernel
 ANYKERNEL_REPO="https://github.com/naden01/anykernel"
