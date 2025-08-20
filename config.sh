@@ -10,8 +10,8 @@ TIMEZONE="Asia/Makassar"
 ANYKERNEL_REPO="https://github.com/naden01/anykernel"
 ANYKERNEL_BRANCH="gki"
 # Kernel Source
-KERNEL_REPO="https://github.com/naden01/gki-android12-5.10"
-KERNEL_BRANCH="quartix/main"
+KERNEL_REPO="v1llx-gki-5.10"
+KERNEL_BRANCH="villhaze-new"
 KERNEL_DEFCONFIG="gki_defconfig"
 # Release repository
 GKI_RELEASES_REPO="https://github.com/naden01/SuiKernel-releases"
