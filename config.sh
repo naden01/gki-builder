@@ -10,8 +10,8 @@ TIMEZONE="Asia/Makassar"
 ANYKERNEL_REPO="https://github.com/naden01/anykernel"
 ANYKERNEL_BRANCH="gki"
 # Kernel Source
-KERNEL_REPO="https://github.com/naden01/v1llx-gki-5.10.git"
-KERNEL_BRANCH="villhaze-new"
+KERNEL_REPO="https://github.com/naden01/kernel_common-5.10.git"
+KERNEL_BRANCH="Gki5.10"
 KERNEL_DEFCONFIG="gki_defconfig"
 # Release repository
 GKI_RELEASES_REPO="https://github.com/naden01/SuiKernel-releases"
