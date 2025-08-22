@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Kernel name
-KERNEL_NAME="WakNazeKernel-prsnl-v3-Kirlia"
+KERNEL_NAME="WakNazeKrnlV3-prsnl-Kirlia"
 # Kernel Build variables
 USER="naze"
 HOST="Garde"
